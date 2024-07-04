@@ -9,3 +9,10 @@ add_executable(claptrap0
         ex00/main.cpp
         ex00/ClapTrap.cpp
         ex00/ClapTrap.hpp)
+
+add_executable(claptrap1
+        ex01/main.cpp
+        ex01/ClapTrap.cpp
+        ex01/ClapTrap.hpp
+        ex01/ScavTrap.cpp
+        ex01/ScavTrap.hpp)
