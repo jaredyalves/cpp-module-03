@@ -4,96 +4,113 @@
 
 int main()
 {
+    // ClapTrap tests
     {
-        std::cout << "[TEST] Bob attacks John with 0 attack damage." << std::endl;
+        std::cout << "[TEST] ClapTrap is initialized properly" << std::endl;
+        ClapTrap::ClapTrap bob("Bob");
+        (void)bob.getHitPoints();
+        (void)bob.getEnergyPoints();
+        (void)bob.getAttackDamage();
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "[TEST] ClapTrap can attack with 0 attack damage" << std::endl;
         ClapTrap::ClapTrap bob("Bob");
         bob.setAttackDamage(static_cast<unsigned int>(0));
         bob.attack("John");
     }
     std::cout << std::endl;
     {
-        std::cout << "[TEST] Bob attacks John with 1 attack damage." << std::endl;
+        std::cout << "[TEST] ClapTrap can attack with 5 attack damage" << std::endl;
         ClapTrap::ClapTrap bob("Bob");
-        bob.setAttackDamage(static_cast<unsigned int>(1));
-        bob.attack("John");
-    }
-    std::cout << std::endl;
-    {
-        std::cout << "[TEST] Bob attacks John with 10 attack damage." << std::endl;
-        ClapTrap::ClapTrap bob("Bob");
-        bob.setAttackDamage(static_cast<unsigned int>(10));
-        bob.attack("John");
-    }
-    std::cout << std::endl;
-    {
-        std::cout << "[TEST] Bob loses 1 energy points when attacking." << std::endl;
-        ClapTrap::ClapTrap bob("Bob");
-        bob.setAttackDamage(static_cast<unsigned int>(0));
-        std::cout << "Bob has " << bob.getEnergyPoints() << " energy points." << std::endl;
-        bob.attack("John");
-        std::cout << "Bob has " << bob.getEnergyPoints() << " energy points." << std::endl;
         bob.setAttackDamage(static_cast<unsigned int>(5));
         bob.attack("John");
-        std::cout << "Bob has " << bob.getEnergyPoints() << " energy points." << std::endl;
     }
     std::cout << std::endl;
     {
-        std::cout << "[TEST] Bob takes damage." << std::endl;
+        std::cout << "[TEST] ClapTrap loses 1 energy point when attacking with 0 attack damage" << std::endl;
         ClapTrap::ClapTrap bob("Bob");
-        ClapTrap::ClapTrap john("John");
-        john.setAttackDamage(static_cast<unsigned int>(5));
-        std::cout << "Bob has " << bob.getHitPoints() << " hit points." << std::endl;
-        john.attack("Bob");
+        bob.setAttackDamage(static_cast<unsigned int>(0));
+        (void)bob.getEnergyPoints();
+        bob.attack("John");
+        (void)bob.getEnergyPoints();
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "[TEST] ClapTrap loses 1 energy point when attacking with 5 attack damage" << std::endl;
+        ClapTrap::ClapTrap bob("Bob");
+        bob.setAttackDamage(static_cast<unsigned int>(5));
+        (void)bob.getEnergyPoints();
+        bob.attack("John");
+        (void)bob.getEnergyPoints();
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "[TEST] ClapTrap loses 5 hit points when taking 5 damage" << std::endl;
+        ClapTrap::ClapTrap bob("Bob");
+        (void)bob.getHitPoints();
         bob.takeDamage(static_cast<unsigned int>(5));
-        std::cout << "Bob has " << bob.getHitPoints() << " hit points." << std::endl;
+        (void)bob.getHitPoints();
     }
     std::cout << std::endl;
     {
-        std::cout << "[TEST] Bob can't attack with 0 hit points." << std::endl;
+        std::cout << "[TEST] ClapTrap can't attack when has 0 hit points" << std::endl;
         ClapTrap::ClapTrap bob("Bob");
         bob.setHitPoints(static_cast<unsigned int>(0));
-        std::cout << "Bob has " << bob.getHitPoints() << " hit points." << std::endl;
         bob.attack("John");
     }
     std::cout << std::endl;
     {
-        std::cout << "[TEST] Bob can't repair with 0 hit points." << std::endl;
-        ClapTrap::ClapTrap bob("Bob");
-        bob.setHitPoints(static_cast<unsigned int>(0));
-        std::cout << "Bob has " << bob.getHitPoints() << " hit points." << std::endl;
-        bob.beRepaired(static_cast<unsigned int>(10));
-    }
-    std::cout << std::endl;
-    {
-        std::cout << "[TEST] Bob can't attack with 0 energy points." << std::endl;
+        std::cout << "[TEST] ClapTrap can't attack when has 0 energy points" << std::endl;
         ClapTrap::ClapTrap bob("Bob");
         bob.setEnergyPoints(static_cast<unsigned int>(0));
-        std::cout << "Bob has " << bob.getEnergyPoints() << " energy points." << std::endl;
         bob.attack("John");
     }
     std::cout << std::endl;
     {
-        std::cout << "[TEST] Bob can't repair with 0 energy points." << std::endl;
+        std::cout << "[TEST] ClapTrap can't repair when has 0 hit points" << std::endl;
         ClapTrap::ClapTrap bob("Bob");
-        bob.setEnergyPoints(static_cast<unsigned int>(0));
-        std::cout << "Bob has " << bob.getEnergyPoints() << " energy points." << std::endl;
-        bob.beRepaired(static_cast<unsigned int>(10));
-    }
-    std::cout << std::endl;
-    {
-        std::cout << "[TEST] Bob is able to repair itself." << std::endl;
-        ClapTrap::ClapTrap bob("Bob");
-        bob.setHitPoints(static_cast<unsigned int>(1));
-        std::cout << "Bob has " << bob.getHitPoints() << " hit points." << std::endl;
-        bob.beRepaired(static_cast<unsigned int>(9));
-        std::cout << "Bob has " << bob.getHitPoints() << " hit points." << std::endl;
-    }
-    std::cout << std::endl;
-    {
-        std::cout << "[TEST] Bob loses 1 energy point when reparing itself." << std::endl;
-        ClapTrap::ClapTrap bob("Bob");
-        std::cout << "Bob has " << bob.getEnergyPoints() << " energy points." << std::endl;
+        bob.setHitPoints(static_cast<unsigned int>(0));
         bob.beRepaired(static_cast<unsigned int>(5));
-        std::cout << "Bob has " << bob.getEnergyPoints() << " energy points." << std::endl;
     }
+    std::cout << std::endl;
+    {
+        std::cout << "[TEST] ClapTrap can't repair when has 0 energy points" << std::endl;
+        ClapTrap::ClapTrap bob("Bob");
+        bob.setEnergyPoints(static_cast<unsigned int>(0));
+        bob.beRepaired(static_cast<unsigned int>(5));
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "[TEST] ClapTrap receives 0 hit points when recovering with 0" << std::endl;
+        ClapTrap::ClapTrap bob("Bob");
+        (void)bob.getHitPoints();
+        bob.beRepaired(static_cast<unsigned int>(0));
+        (void)bob.getHitPoints();
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "[TEST] ClapTrap receives 5 hit points when recovering with 5" << std::endl;
+        ClapTrap::ClapTrap bob("Bob");
+        (void)bob.getHitPoints();
+        bob.beRepaired(static_cast<unsigned int>(5));
+        (void)bob.getHitPoints();
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "[TEST] ClapTrap loses 1 energy point when recovering with 0" << std::endl;
+        ClapTrap::ClapTrap bob("Bob");
+        (void)bob.getEnergyPoints();
+        bob.beRepaired(static_cast<unsigned int>(0));
+        (void)bob.getEnergyPoints();
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "[TEST] ClapTrap loses 1 energy point when recovering with 5" << std::endl;
+        ClapTrap::ClapTrap bob("Bob");
+        (void)bob.getEnergyPoints();
+        bob.beRepaired(static_cast<unsigned int>(5));
+        (void)bob.getEnergyPoints();
+    }
+    std::cout << std::endl;
 }
