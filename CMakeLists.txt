@@ -16,3 +16,12 @@ add_executable(claptrap1
         ex01/ClapTrap.hpp
         ex01/ScavTrap.cpp
         ex01/ScavTrap.hpp)
+
+add_executable(claptrap2
+        ex02/main.cpp
+        ex02/ClapTrap.cpp
+        ex02/ClapTrap.hpp
+        ex02/ScavTrap.cpp
+        ex02/ScavTrap.hpp
+        ex02/FrapTrap.cpp
+        ex02/FrapTrap.hpp)
