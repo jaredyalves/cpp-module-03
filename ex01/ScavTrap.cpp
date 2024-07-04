@@ -7,27 +7,26 @@ namespace ClapTrap
     ScavTrap::ScavTrap()
     {
         std::cout << "[DEBUG] ScavTrap default constructor called" << std::endl;
-        _type = "ScavTrap";
-        _hit_points = static_cast<unsigned int>(100);
-        _energy_points = static_cast<unsigned int>(50);
-        _attack_damage = static_cast<unsigned int>(20);
+        setType("ScavTrap");
+        setHitPoints(static_cast<unsigned int>(100));
+        setEnergyPoints(static_cast<unsigned int>(50));
+        setAttackDamage(static_cast<unsigned int>(20));
     }
 
     ScavTrap::ScavTrap(const std::string& name)
         : ClapTrap(name)
     {
-        std::cout << "[DEBUG] ScavTrap name constructor called" << std::endl;
-        _type = "ScavTrap";
-        _hit_points = static_cast<unsigned int>(100);
-        _energy_points = static_cast<unsigned int>(50);
-        _attack_damage = static_cast<unsigned int>(20);
+        std::cout << "[DEBUG] ScavTrap name (" << name << ") constructor called" << std::endl;
+        setType("ScavTrap");
+        setHitPoints(static_cast<unsigned int>(100));
+        setEnergyPoints(static_cast<unsigned int>(50));
+        setAttackDamage(static_cast<unsigned int>(20));
     }
 
     ScavTrap::ScavTrap(const ScavTrap& other)
         : ClapTrap(other)
     {
         std::cout << "[DEBUG] ScavTrap copy constructor called" << std::endl;
-        _type = "ScavTrap";
     }
 
     ScavTrap::~ScavTrap()
@@ -40,11 +39,11 @@ namespace ClapTrap
         std::cout << "[DEBUG] ScavTrap copy assignment operator called" << std::endl;
         if (this != &other)
         {
-            _type = "ScavTrap";
-            _name = other._name;
-            _hit_points = other._hit_points;
-            _energy_points = other._energy_points;
-            _attack_damage = other._attack_damage;
+            setType(other.getType());
+            setName(other.getName());
+            setHitPoints(other.getHitPoints());
+            setEnergyPoints(other.getEnergyPoints());
+            setAttackDamage(other.getAttackDamage());
         }
         return *this;
     }
@@ -53,11 +52,11 @@ namespace ClapTrap
     {
         if (hasEnoughPoints())
         {
-            std::cout << _type << " " << _name;
-            std::cout << " is now in gate keeper mode.";
+            std::cout << getType() << " " << getName();
+            std::cout << " is keeping the gate safe.";
             std::cout << std::endl;
 
-            _energy_points--;
+            setEnergyPoints(getEnergyPoints() - static_cast<unsigned int>(1));
         }
     }
 }
