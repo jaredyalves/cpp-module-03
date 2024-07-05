@@ -12,7 +12,7 @@ namespace ClapTrap
         explicit ClapTrap(const std::string& name);
         ClapTrap(const ClapTrap& other);
 
-        ~ClapTrap();
+        virtual ~ClapTrap();
 
         ClapTrap& operator=(const ClapTrap& other);
 
@@ -25,10 +25,10 @@ namespace ClapTrap
         unsigned int getAttackDamage() const;
         void         setAttackDamage(unsigned int attack_damage);
 
-        bool hasEnoughPoints() const;
-        void attack(const std::string& target);
-        void takeDamage(unsigned int amount);
-        void beRepaired(unsigned int amount);
+        bool         hasEnoughPoints() const;
+        virtual void attack(const std::string& target);
+        void         takeDamage(unsigned int amount);
+        void         beRepaired(unsigned int amount);
 
     protected:
         std::string  _name;
