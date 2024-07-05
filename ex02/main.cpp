@@ -120,7 +120,15 @@ int main()
     {
         std::cout << "[TEST] ScavTrap is initialized properly" << std::endl;
         ClapTrap::ScavTrap bob("Bob");
-        (void)bob;
+        (void)bob.getHitPoints();
+        (void)bob.getEnergyPoints();
+        (void)bob.getAttackDamage();
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "[TEST] ScavTrap can attack properly" << std::endl;
+        ClapTrap::ScavTrap bob("Bob");
+        bob.attack("John");
     }
     std::cout << std::endl;
     {
@@ -134,7 +142,15 @@ int main()
     {
         std::cout << "[TEST] FrapTrap is initialized properly" << std::endl;
         ClapTrap::FrapTrap bob("Bob");
-        (void)bob;
+        (void)bob.getHitPoints();
+        (void)bob.getEnergyPoints();
+        (void)bob.getAttackDamage();
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "[TEST] FrapTrap can attack properly" << std::endl;
+        ClapTrap::FrapTrap bob("Bob");
+        bob.attack("John");
     }
     std::cout << std::endl;
     {

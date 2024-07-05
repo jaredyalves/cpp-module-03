@@ -16,6 +16,7 @@ namespace ClapTrap
 
         FrapTrap& operator=(const FrapTrap& other);
 
+        void attack(const std::string& target);
         void highFivesGuys();
     };
 }

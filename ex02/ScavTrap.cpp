@@ -7,20 +7,18 @@ namespace ClapTrap
     ScavTrap::ScavTrap()
     {
         std::cout << "[DEBUG] ScavTrap default constructor called" << std::endl;
-        setType("ScavTrap");
-        setHitPoints(static_cast<unsigned int>(100));
-        setEnergyPoints(static_cast<unsigned int>(50));
-        setAttackDamage(static_cast<unsigned int>(20));
+        _hit_points = static_cast<unsigned int>(100);
+        _energy_points = static_cast<unsigned int>(50);
+        _attack_damage = static_cast<unsigned int>(20);
     }
 
     ScavTrap::ScavTrap(const std::string& name)
         : ClapTrap(name)
     {
         std::cout << "[DEBUG] ScavTrap name (" << name << ") constructor called" << std::endl;
-        setType("ScavTrap");
-        setHitPoints(static_cast<unsigned int>(100));
-        setEnergyPoints(static_cast<unsigned int>(50));
-        setAttackDamage(static_cast<unsigned int>(20));
+        _hit_points = static_cast<unsigned int>(100);
+        _energy_points = static_cast<unsigned int>(50);
+        _attack_damage = static_cast<unsigned int>(20);
     }
 
     ScavTrap::ScavTrap(const ScavTrap& other)
@@ -39,24 +37,40 @@ namespace ClapTrap
         std::cout << "[DEBUG] ScavTrap copy assignment operator called" << std::endl;
         if (this != &other)
         {
-            setType(other.getType());
-            setName(other.getName());
-            setHitPoints(other.getHitPoints());
-            setEnergyPoints(other.getEnergyPoints());
-            setAttackDamage(other.getAttackDamage());
+            _name = other._name;
+            _hit_points = other._hit_points;
+            _energy_points = other._energy_points;
+            _attack_damage = other._attack_damage;
         }
         return *this;
+    }
+
+    void ScavTrap::attack(const std::string& target)
+    {
+        if (hasEnoughPoints())
+        {
+            std::cout << "ScavTrap " << _name;
+            if (_attack_damage == static_cast<unsigned int>(0))
+            {
+                std::cout << " fails to attack " << target << ", causing no damage.";
+            }
+            else
+            {
+                std::cout << " attacks " << target << ", causing " << _attack_damage << " points of damage!";
+            }
+            std::cout << std::endl;
+
+            _energy_points--;
+        }
     }
 
     void ScavTrap::guardGate()
     {
         if (hasEnoughPoints())
         {
-            std::cout << getType() << " " << getName();
-            std::cout << " is keeping the gate safe.";
-            std::cout << std::endl;
+            std::cout << "ScavTrap " << _name << " is keeping the gate safe." << std::endl;
 
-            setEnergyPoints(getEnergyPoints() - static_cast<unsigned int>(1));
+            _energy_points--;
         }
     }
 }

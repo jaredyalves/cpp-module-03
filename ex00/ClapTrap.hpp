@@ -16,8 +16,6 @@ namespace ClapTrap
 
         ClapTrap& operator=(const ClapTrap& other);
 
-        std::string  getType() const;
-        void         setType(const std::string& type);
         std::string  getName() const;
         void         setName(const std::string& name);
         unsigned int getHitPoints() const;
@@ -33,7 +31,6 @@ namespace ClapTrap
         void beRepaired(unsigned int amount);
 
     private:
-        std::string  _type;
         std::string  _name;
         unsigned int _hit_points;
         unsigned int _energy_points;

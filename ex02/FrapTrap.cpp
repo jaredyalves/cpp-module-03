@@ -7,20 +7,18 @@ namespace ClapTrap
     FrapTrap::FrapTrap()
     {
         std::cout << "[DEBUG] FrapTrap default constructor called" << std::endl;
-        setType("FrapTrap");
-        setHitPoints(static_cast<unsigned int>(100));
-        setEnergyPoints(static_cast<unsigned int>(100));
-        setAttackDamage(static_cast<unsigned int>(30));
+        _hit_points = static_cast<unsigned int>(100);
+        _energy_points = static_cast<unsigned int>(100);
+        _attack_damage = static_cast<unsigned int>(30);
     }
 
     FrapTrap::FrapTrap(const std::string& name)
         : ClapTrap(name)
     {
         std::cout << "[DEBUG] FrapTrap name (" << name << ") constructor called" << std::endl;
-        setType("FrapTrap");
-        setHitPoints(static_cast<unsigned int>(100));
-        setEnergyPoints(static_cast<unsigned int>(100));
-        setAttackDamage(static_cast<unsigned int>(30));
+        _hit_points = static_cast<unsigned int>(100);
+        _energy_points = static_cast<unsigned int>(100);
+        _attack_damage = static_cast<unsigned int>(30);
     }
 
     FrapTrap::FrapTrap(const FrapTrap& other)
@@ -39,24 +37,40 @@ namespace ClapTrap
         std::cout << "[DEBUG] FrapTrap copy assignment operator called" << std::endl;
         if (this != &other)
         {
-            setType(other.getType());
-            setName(other.getName());
-            setHitPoints(other.getHitPoints());
-            setEnergyPoints(other.getEnergyPoints());
-            setAttackDamage(other.getAttackDamage());
+            _name = other._name;
+            _hit_points = other._hit_points;
+            _energy_points = other._energy_points;
+            _attack_damage = other._attack_damage;
         }
         return *this;
+    }
+
+    void FrapTrap::attack(const std::string& target)
+    {
+        if (hasEnoughPoints())
+        {
+            std::cout << "FrapTrap " << _name;
+            if (_attack_damage == static_cast<unsigned int>(0))
+            {
+                std::cout << " fails to attack " << target << ", causing no damage.";
+            }
+            else
+            {
+                std::cout << " attacks " << target << ", causing " << _attack_damage << " points of damage!";
+            }
+            std::cout << std::endl;
+
+            _energy_points--;
+        }
     }
 
     void FrapTrap::highFivesGuys()
     {
         if (hasEnoughPoints())
         {
-            std::cout << getType() << " " << getName();
-            std::cout << " is trying to high five everyone. LET'S DO IT!";
-            std::cout << std::endl;
+            std::cout << "FrapTrap " << _name << " is trying to high five everyone. LET'S DO IT!" << std::endl;
 
-            setEnergyPoints(getEnergyPoints() - static_cast<unsigned int>(1));
+            _energy_points--;
         }
     }
 }
